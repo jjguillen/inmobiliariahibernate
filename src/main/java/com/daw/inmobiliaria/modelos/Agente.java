@@ -35,7 +35,7 @@ public class Agente {
 	private String telefono;
 	
 	@OneToMany(mappedBy = "agente")	
-	private List<Venta> ventasAgente;
+	private List<Venta> ventasAgente = new ArrayList<>();
 	
 	public void addVenta(Venta v) {
 		ventasAgente.add(v);
@@ -48,12 +48,10 @@ public class Agente {
 		this.apellidos = apellidos;
 		this.email = email;
 		this.telefono = telefono;
-		this.ventasAgente = new ArrayList<>();
 	}
 
 	public Agente() {
 		super();
-		this.ventasAgente = new ArrayList<>();
 	}
 	
 	

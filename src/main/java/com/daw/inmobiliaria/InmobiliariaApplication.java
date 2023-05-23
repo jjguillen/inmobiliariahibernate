@@ -1,7 +1,6 @@
 package com.daw.inmobiliaria;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +13,8 @@ import com.daw.inmobiliaria.modelos.Venta;
 import com.daw.inmobiliaria.repositorios.AgenteRepositorio;
 import com.daw.inmobiliaria.repositorios.InmuebleRepositorio;
 import com.daw.inmobiliaria.repositorios.VentaRepositorio;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class InmobiliariaApplication implements CommandLineRunner {
@@ -32,13 +33,10 @@ public class InmobiliariaApplication implements CommandLineRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		
-		Agente a1 = new Agente();
-		a1.setApellidos("García");
-		a1.setEmail("ff@gmail.com");
-		a1.setNombre("Manuel");
-		a1.setTelefono("3333333");
+		Agente a1 = new Agente("Manuel", "García", "mg@gmail.com", "445455988");
 		ar.save(a1);
 		
 		Inmueble i1 = new Inmueble("Casa en Vera Playa", "Calle Principal 1", "Vera", 200, 4, 250000, LocalDate.now());
@@ -52,13 +50,12 @@ public class InmobiliariaApplication implements CommandLineRunner {
 		vr.save(v1);
 		vr.save(v2);
 		
-		a1.addVenta(v1);
-		a1.addVenta(v2);
-		ar.save(a1);
+		vr.findById(1l).stream().forEach(System.out::println);
+		vr.findByPrecioVentaGreaterThanEqual(10000).stream().forEach(System.out::println);
+		vr.findByPrecioVentaBetween(110000, 121000).stream().forEach(System.out::println);
 		
-		//System.out.println(vr.findByFechaVentaAfter(LocalDate.now().minusDays(1)));
-
-		
+		//Si os fijáis hace un join de venta e inmueble
+		vr.findByInmuebleCiudad("Vera").stream().forEach(System.out::println); 
 
 	}
 

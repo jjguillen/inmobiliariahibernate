@@ -11,7 +11,8 @@ import com.daw.inmobiliaria.modelos.Venta;
 @Repository
 public interface VentaRepositorio extends JpaRepository<Venta, Long>{
 
-	 public List<Venta> findByFechaVentaAfter(LocalDate fecha);
-	 public List<Venta> findByPrecioVentaGreaterThanEqual(double precio);
-	 public List<Venta> findByPrecioVentaBetween(double precio1, double precio2);
+	 List<Venta> findByFechaVentaAfter(LocalDate fecha);
+	 List<Venta> findByPrecioVentaGreaterThanEqual(double precio);
+	 List<Venta> findByPrecioVentaBetween(double precio1, double precio2);
+	 List<Venta> findByInmuebleCiudad(String ciudad);
 }

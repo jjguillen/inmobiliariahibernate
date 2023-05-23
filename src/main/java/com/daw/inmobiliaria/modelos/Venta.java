@@ -49,7 +49,6 @@ public class Venta {
 		this.dniComprador = dniComprador;
 		this.inmueble = inmueble;
 		this.agente = agente;
-		this.agente.addVenta(this);
 	}
 	
 	
