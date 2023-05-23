@@ -52,7 +52,11 @@ public class InmobiliariaApplication implements CommandLineRunner {
 		vr.save(v1);
 		vr.save(v2);
 		
-		System.out.println(vr.findByFechaVentaAfter(LocalDate.now().minusDays(1)));
+		a1.addVenta(v1);
+		a1.addVenta(v2);
+		ar.save(a1);
+		
+		//System.out.println(vr.findByFechaVentaAfter(LocalDate.now().minusDays(1)));
 
 		
 

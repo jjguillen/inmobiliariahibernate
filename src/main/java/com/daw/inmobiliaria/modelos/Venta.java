@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -37,8 +38,8 @@ public class Venta {
     @JoinColumn(name = "inmueble_id")
 	private Inmueble inmueble;
 	
-	@ManyToOne
-	@JoinColumn(name = "agente_id", foreignKey = @ForeignKey(name="agente_venta_fk"))
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "agente_id", foreignKey = @ForeignKey(name="agente_venta_fk", value=ConstraintMode.CONSTRAINT))
 	private Agente agente;
 
 	public Venta(long precioVenta, LocalDate fechaVenta, String dniComprador, Inmueble inmueble, Agente agente) {
